@@ -9,6 +9,8 @@ tonic = { version = "0.13", features = ["prost", "tls-ring", "tls-native-roots"]
 prost = "0.13"
 prost-types = "0.13"
 base64 = "0.22"
+thiserror = "1"
+anyhow = "1"
 
 [build-dependencies]
 tonic-build = "0.13"
