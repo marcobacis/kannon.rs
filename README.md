@@ -1,6 +1,6 @@
 ## kannon.rs: unofficial Rust client library for Kannon Email Sender
 
-`kannon-rs` is the (unofficial) Rust client library for [Kannon](https://www.kannon.email/).
+`kannon_mail` is the (unofficial) Rust client library for [Kannon](https://www.kannon.email/).
 
 ## Usage
 

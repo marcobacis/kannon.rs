@@ -52,7 +52,7 @@ impl From<Sender> for pkg::kannon::mailer::types::Sender {
 /// For example: 
 /// ```rust
 /// # use std::collections::HashMap;
-/// # use kannon::Recipient;
+/// # use kannon_mail::Recipient;
 /// let recipient = Recipient {
 ///     email: "test@email.com".into(),
 ///     fields: HashMap::from([("name".into(), "Test User".into())])
@@ -105,9 +105,9 @@ impl Kannon {
     /// 
     /// # Example
     /// ```rust, no_run
-    /// # use kannon::{Sender, Kannon};
+    /// # use kannon_mail::{Sender, Kannon, Error};
     /// # #[tokio::main]
-    /// # async fn main() -> Result<(), kannon::Error> {
+    /// # async fn main() -> Result<(), Error> {
     /// let mut kannon = Kannon::new(
     ///     "example.com".into(),
     ///     "<your key>".into(),
