@@ -1,7 +1,7 @@
 [package]
 name = "kannon_mail"
 description = "Rust client library for kannon.email"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 license = "MIT"
 readme = "README.md"
