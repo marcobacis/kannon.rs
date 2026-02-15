@@ -91,6 +91,21 @@ impl From<Attachment> for pkg::kannon::mailer::apiv1::Attachment {
     }
 }
 
+#[derive(Debug, Clone, PartialEq)]
+pub struct Headers {
+    pub to: Vec<String>,
+    pub cc: Vec<String>,
+}
+
+impl From<Headers> for pkg::kannon::mailer::types::Headers {
+    fn from(val: Headers) -> Self {
+        pkg::kannon::mailer::types::Headers {
+            to: val.to, 
+            cc: val.cc,
+        }
+    }
+}
+
 /// Kannon mail client
 pub struct Kannon {
     domain: String,
@@ -156,6 +171,7 @@ impl Kannon {
         subject: String,
         body: String,
         attachments: Vec<Attachment>,
+        headers: Option<Headers>,
     ) -> Result<(), Error> {
         let mut request = Request::new(SendHtmlReq {
             sender: Some(self.sender.clone().into()),
@@ -165,7 +181,7 @@ impl Kannon {
             recipients: recipients.into_iter().map(Recipient::into).collect(),
             attachments: attachments.into_iter().map(Attachment::into).collect(),
             global_fields: HashMap::new(),
-            headers: None,
+            headers: headers.map(Headers::into),
         });
 
         let metadata_value = self.get_auth_header().try_into().unwrap();
@@ -184,6 +200,7 @@ impl Kannon {
         subject: String,
         template_id: String,
         attachments: Vec<Attachment>,
+        headers: Option<Headers>
     ) -> Result<(), Error> {
         let mut request = Request::new(SendTemplateReq {
             sender: Some(self.sender.clone().into()),
@@ -193,7 +210,7 @@ impl Kannon {
             recipients: recipients.into_iter().map(Recipient::into).collect(),
             attachments: attachments.into_iter().map(Attachment::into).collect(),
             global_fields: HashMap::new(),
-            headers: None,
+            headers: headers.map(Headers::into),
         });
 
         let metadata_value = self.get_auth_header().try_into().unwrap();
