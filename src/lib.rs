@@ -165,6 +165,7 @@ impl Kannon {
             recipients: recipients.into_iter().map(Recipient::into).collect(),
             attachments: attachments.into_iter().map(Attachment::into).collect(),
             global_fields: HashMap::new(),
+            headers: None,
         });
 
         let metadata_value = self.get_auth_header().try_into().unwrap();
@@ -192,6 +193,7 @@ impl Kannon {
             recipients: recipients.into_iter().map(Recipient::into).collect(),
             attachments: attachments.into_iter().map(Attachment::into).collect(),
             global_fields: HashMap::new(),
+            headers: None,
         });
 
         let metadata_value = self.get_auth_header().try_into().unwrap();
